@@ -1,4 +1,4 @@
-import {ReactElement, changeEvent} from 'react'
+import {ChangeEvent, ReactElement} from 'react'
 import { CartItemType } from "../context/CartProvider"
 import { ReducerAction, ReducerActionType  } from "../context/CartProvider"
 
@@ -22,7 +22,7 @@ const CartLineItem = ({item, dispatch, REDUCER_ACTIONS}: PropsType) => {
         return <option key={`opt${val}`} value={val}>{val}</option>
     })
 
-    const onChangeQty = (e: changeEvent<HTMLSelectElement>)=>{
+    const onChangeQty = (e: ChangeEvent<HTMLSelectElement>)=>{
         dispatch({
             type: REDUCER_ACTIONS.QUANTITY,
             payload: {...item, qty:Number(e.target.value)}
@@ -37,7 +37,31 @@ const CartLineItem = ({item, dispatch, REDUCER_ACTIONS}: PropsType) => {
     
     const content = (
         <li className="cart__item">
-            <img src="{img}" alt="{item.name}" className="cart__img" />      
+            <img src="{img}" alt="{item.name}" className="cart__img" />
+            <div aria-label="Item Name">{item.name}</div>
+            <div aria-label="Price Per Item">
+                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
+                    .format(item.price)}
+            </div>
+
+            <label htmlFor="itemQty" className="offscreen">
+                Item Quantity
+            </label>
+            <select
+                name="itemQty"
+                id="itemQty"
+                className="cart__select"
+                value={item.qty}
+                aria-label="Item Quantity"
+                onChange={onChangeQty}
+            >{options}</select>
+
+            <div className="cart__item-subtotal" aria-label="Line Item Subtotal">
+                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
+                    .format(lineTotal)}
+                    
+            </div>
+          
         </li>
     )
 
