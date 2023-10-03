@@ -38,7 +38,7 @@ const CartLineItem = ({item, dispatch, REDUCER_ACTIONS}: PropsType) => {
     
     const content = (
         <li className="cart__item">
-            <img src="{img}" alt="{item.name}" className="cart__img" />
+            <img src={img} alt={item.name} className="cart__img" />
             <div aria-label="Item Name">{item.name}</div>
             <div aria-label="Price Per Item">
                 {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
@@ -59,11 +59,17 @@ const CartLineItem = ({item, dispatch, REDUCER_ACTIONS}: PropsType) => {
 
             <div className="cart__item-subtotal" aria-label="Line Item Subtotal">
                 {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
-                    .format(lineTotal)}
-                    
-
-                    
+                    .format(lineTotal)}    
             </div>
+            <button
+                className="cart__button"
+                aria-label="Remove Item From Cart"
+                title="Remove Item From Cart"
+                onClick={onRemoveFromCart}
+            >
+                {/*emoji pd.com */}
+                ❌
+            </button>
           
         </li>
     )
