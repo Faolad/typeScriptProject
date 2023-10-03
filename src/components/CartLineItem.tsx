@@ -9,6 +9,7 @@ type PropsType = {
     REDUCER_ACTIONS: ReducerActionType,
 
 }
+
 const CartLineItem = ({item, dispatch, REDUCER_ACTIONS}: PropsType) => {
  
     const img: string = new URL(`../images/${item.sku}.jpg`, import.meta.url).href
@@ -69,5 +70,6 @@ const CartLineItem = ({item, dispatch, REDUCER_ACTIONS}: PropsType) => {
     return content
 
     }
+
 
 export default CartLineItem
