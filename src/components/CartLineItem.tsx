@@ -59,6 +59,7 @@ const CartLineItem = ({item, dispatch, REDUCER_ACTIONS}: PropsType) => {
             <div className="cart__item-subtotal" aria-label="Line Item Subtotal">
                 {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
                     .format(lineTotal)}
+
                     
             </div>
           
