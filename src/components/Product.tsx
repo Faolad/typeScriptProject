@@ -26,8 +26,7 @@ const Product = ({product, dispatch, REDUCER_ACTIONS, inCart}:PropsType):ReactEl
             <h3>{product.name}</h3>
             <img src={img} alt={product.name} className='product__img' />
             <p>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}{itemInCart}</p>
-            <button onClick={onAddToCart}>Add to Cart</button>
-            {/* disabled={inCart} */}
+            <button onClick={onAddToCart} disabled={inCart} >Add to Cart</button>
         </article>
 
     
