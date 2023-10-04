@@ -13,6 +13,7 @@ function App() {
     <>
       <Header viewCart={viewCart} setViewCart={setViewCart} />
       {pageContent}
+      
       <Footer viewCart={viewCart} />
     </>
   )
