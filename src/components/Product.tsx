@@ -1,6 +1,7 @@
 import {ReactElement, memo} from 'react'
 import { ProductType } from "../context/ProductsProvider"
 import { ReducerAction, ReducerActionType } from "../context/CartProvider"
+import useMessage from '../hooks/useMessage'
 
 type PropsType = {
     product:ProductType
@@ -9,15 +10,20 @@ type PropsType = {
     inCart: boolean
 }
 const Product = ({product, dispatch, REDUCER_ACTIONS, inCart}:PropsType):ReactElement => {
-
+    const {setMessage} = useMessage()
     const img: string = new URL(`../images/${product.sku}.jpg`, import.meta.url).href
     console.log(img)
     //old way, works in CRA but not in vite
     // const img: string = require(`../images/${product.sku}`)
 
-    const onAddToCart = ()=>dispatch({
-        type:REDUCER_ACTIONS.ADD, payload:{...product, qty:1}
-    })
+    const onAddToCart = ()=>{
+        dispatch({type:REDUCER_ACTIONS.ADD, payload:{...product, qty:1} })    
+        setMessage(`Added ${product.name} successfully`);
+        setTimeout(() => {
+        setMessage('');
+        }, 3000);  
+        
+    }
         
     const itemInCart = inCart ? ' → Item in Cart: ✔️' : null
 

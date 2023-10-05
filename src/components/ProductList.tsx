@@ -4,6 +4,7 @@ import useProducts from "../hooks/useProducts"
 import { ReactElement } from "react"
 import Product from "./Product"
 
+
 const ProductList = () => {
     const {dispatch, REDUCER_ACTIONS, cart} = useCart()
     const {products} = useProducts()
